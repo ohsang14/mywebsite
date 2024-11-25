@@ -6,69 +6,218 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한마음사회적협동조합</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <link href="/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* General Body Styling */
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
         }
 
+        /* Header Section */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header .top-nav {
+            background-color: #f5f5f5;
+            padding: 5px 0;
+            text-align: right;
+        }
+
+        .header .top-nav a {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .header .top-nav a:hover {
+            color: #36b876;
+        }
+
+        .logo-nav {
+            padding: 15px 0;
+        }
+
+        .logo-nav h1 img {
+            height: 60px;
+        }
+
+        .logo-nav nav a {
+            font-size: 16px;
+            color: #333;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .logo-nav nav a:hover {
+            color: #36b876;
+        }
+
+        /* Hero Section */
         .hero {
-            background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+            background: url('/img_up/shop_pds/tp195/design/my_xml/main021568081249.jpg') no-repeat center center/cover;
             height: 300px;
+            text-align: center;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
 
         .hero h1 {
             font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
+        /* Main Content */
         .main-content {
-            margin-top: 20px;
+            margin: 30px auto;
+            max-width: 1200px;
         }
 
-        .footer {
-            background-color: #f8f9fa;
-            padding: 20px;
+        .main-content h3 {
+            font-size: 18px;
+            background-color: #36b876;
+            color: white;
+            padding: 10px;
             text-align: center;
-            margin-top: 40px;
+            margin-bottom: 20px;
+            border-radius: 5px;
         }
 
-        .notice-list li {
-            margin-bottom: 5px;
+        .main-content .info-box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 15px;
         }
 
-        .btn-link {
-            color: #36b876;
+        .main-content .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-content .info-box ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .main-content .info-box ul li:last-child {
+            border-bottom: none;
+        }
+
+        .main-content .info-box ul li a {
             text-decoration: none;
+            color: #333;
         }
 
-        .btn-link:hover {
+        .main-content .info-box ul li a:hover {
+            color: #36b876;
+        }
+
+        .main-content .info-box p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .main-content .highlight-box {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #36b876;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer img {
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        footer .nav-links {
+            margin: 10px 0;
+        }
+
+        footer .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer .nav-links a:hover {
             text-decoration: underline;
+        }
+
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #36b876;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-to-top:hover {
+            background-color: #2c9b5a;
         }
     </style>
 </head>
 
 <body>
     <!-- Header -->
-    <header class="bg-light py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="h3">한마음사회적협동조합</h1>
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a href="#" class="nav-link">기관소개</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">주요사업</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">조합원</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">후원하기</a></li>
-                </ul>
-            </nav>
+    <header class="header">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="container">
+                <a href="/login">로그인</a>
+                <a href="/join">회원가입</a>
+            </div>
+        </div>
+        <!-- Logo and Navigation -->
+        <div class="logo-nav">
+            <div class="container d-flex justify-content-between align-items-center">
+                <h1><a href="/"><img src="/img_up/shop_pds/tp195/site_content/logo15668841781.png" alt="로고"></a></h1>
+                <nav>
+                    <a href="/page/sub01">기관소개</a>
+                    <a href="/page/sub02">주요사업</a>
+                    <a href="/bbs/notice">커뮤니티</a>
+                    <a href="/page/sub04">조합원</a>
+                    <a href="/page/sub05">후원하기</a>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -79,59 +228,94 @@
     </section>
 
     <!-- Main Content -->
-    <main class="container main-content">
-        <div class="row">
-            <!-- 공지사항 -->
-            <div class="col-md-4">
-                <h3>공지사항</h3>
-                <ul class="list-group notice-list">
-                    <li class="list-group-item"><a href="#" class="btn-link">2024년 1차 직원 채용 공고</a></li>
-                    <li class="list-group-item"><a href="#" class="btn-link">2024년 협동조합 회의 일정</a></li>
-                    <li class="list-group-item"><a href="#" class="btn-link">2023년 결산 공고</a></li>
-                </ul>
+    <main class="main-content">
+        <div class="container">
+            <div class="row">
+                <!-- 공지사항 -->
+                <div class="col-md-4">
+                    <h3>공지사항</h3>
+                    <div class="info-box">
+                        <ul>
+                            <li><a href="#">2024년 1차 직원 채용 공고</a></li>
+                            <li><a href="#">2024년 협동조합 회의 일정</a></li>
+                            <li><a href="#">2023년 결산 공고</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 고객상담 -->
+                <div class="col-md-4">
+                    <h3>고객상담전화</h3>
+                    <div class="info-box">
+                        <p><strong>Tel:</strong> 010-8320-2506</p>
+                        <p><strong>Fax:</strong> 02-394-2506</p>
+                    </div>
+                </div>
+                <!-- 기관소개 -->
+                <div class="col-md-4">
+                    <h3>기관소개</h3>
+                    <div class="info-box">
+                        <img src="/img_up/shop_pds/tp195/design/img/m_pic01.jpg" alt="기관소개" class="img-fluid">
+                    </div>
+                </div>
             </div>
-            <!-- 고객상담 -->
-            <div class="col-md-4">
-                <h3>고객상담전화</h3>
-                <p><strong>Tel:</strong> 010-8320-2506</p>
-                <p><strong>Fax:</strong> 02-394-2506</p>
-            </div>
-            <!-- 기관소개 -->
-            <div class="col-md-4">
-                <h3>기관소개</h3>
-                <a href="#"><img src="https://via.placeholder.com/350x150" alt="Logo" class="img-fluid"></a>
-            </div>
-        </div>
-
-        <!-- 추가 섹션 -->
-        <div class="row mt-4">
-            <!-- 주요사업 -->
-            <div class="col-md-4">
-                <h3>주요사업</h3>
-                <a href="#"><img src="https://via.placeholder.com/350x150" alt="사업" class="img-fluid"></a>
-            </div>
-            <!-- 영상 -->
-            <div class="col-md-4">
-                <h3>영상</h3>
-                <iframe width="100%" height="200" src="https://www.youtube.com/embed/Q5Dp9Iu5ovw" frameborder="0"
-                    allowfullscreen></iframe>
-            </div>
-            <!-- 후원하기 -->
-            <div class="col-md-4">
-                <h3>후원하기</h3>
-                <a href="#"><img src="https://via.placeholder.com/350x150" alt="후원" class="img-fluid"></a>
+            <div class="row mt-4">
+                <!-- 주요사업 -->
+                <div class="col-md-4">
+                    <h3>주요사업</h3>
+                    <div class="highlight-box">
+                        <img src="/img_up/shop_pds/tp195/design/img/m_pic02.jpg" alt="주요사업" class="img-fluid">
+                    </div>
+                </div>
+                <!-- 영상 -->
+                <div class="col-md-4">
+                    <h3>영상</h3>
+                    <div class="highlight-box">
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/Q5Dp9Iu5ovw"
+                            frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <!-- 후원하기 -->
+                <div class="col-md-4">
+                    <h3>후원하기</h3>
+                    <div class="highlight-box">
+                        <img src="/img_up/shop_pds/tp195/design/img/m_pic04.jpg" alt="후원하기" class="img-fluid">
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 한마음사회적협동조합. All rights reserved.</p>
-        <p>Tel: 010-8320-2506 | Fax: 02-394-2506 | Email: hanmaumsc@hanmail.net</p>
+       <!-- Footer -->
+       <footer>
+        <div class="container">
+            <img src="/img_up/shop_pds/tp195/site_content/logo15668841781.png" alt="로고">
+            <div class="nav-links">
+                <a href="/page/sub01">기관소개</a>
+                <a href="/page/sub02">주요사업</a>
+                <a href="/bbs/notice">커뮤니티</a>
+                <a href="/page/sub04">조합원</a>
+                <a href="/page/sub05">후원하기</a>
+            </div>
+            <p>상호: 한마음사회적협동조합 | 대표자: 최동표 | 사업자 등록번호: 564-82-00140</p>
+            <p>주소: 서울 서대문구 홍연8길 3 (연희동) 2층 | TEL: 010-8320-2506 | FAX: 02-394-2506</p>
+            <p>Copyright(c) 한마음사회적협동조합. All Rights Reserved.</p>
+        </div>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <!-- Scroll to Top Script -->
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
