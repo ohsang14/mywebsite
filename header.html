@@ -1,0 +1,59 @@
+<header class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+            <img src="img/main_logo.png" alt="로고" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <!-- 기관소개 -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">기관소개</a>
+                    <ul class="dropdown-menu dep2" aria-labelledby="aboutDropdown">
+                        <li><a class="dropdown-item" href="./about/purpose.html">설립목적</a></li>
+                        <li><a class="dropdown-item" href="./about/greeting.html">인사말</a></li>
+                        <li><a class="dropdown-item" href="./about/history.html">연혁</a></li>
+                    </ul>
+                </li>
+
+                <!-- 주요사업 -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="businessDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">주요사업</a>
+                    <ul class="dropdown-menu dep2" aria-labelledby="businessDropdown">
+                        <li><a class="dropdown-item" href="./about/house.html">공동생활가정운영사업</a></li>
+                        <li><a class="dropdown-item" href="./about/self.html">자립생활주택운영사업</a></li>
+                    </ul>
+                </li>
+
+                <!-- 커뮤니티 -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+                    <ul class="dropdown-menu dep2" aria-labelledby="communityDropdown">
+                        <li><a class="dropdown-item" href="./about/notice.html">공지사항</a></li>
+                        <li><a class="dropdown-item" href="./about/qna.html">질문게시판</a></li>
+                    </ul>
+                </li>
+
+                <!-- 로그인, 회원가입, 로그아웃 -->
+                <li class="nav-item" id="loginItem">
+                    <a class="nav-link" href="./login.html">🔑 로그인</a>
+                </li>
+                <li class="nav-item" id="signupItem">
+                    <a class="nav-link" href="./signup.html">📝 회원가입</a>
+                </li>
+                <li class="nav-item d-none" id="logoutItem">
+                    <a class="nav-link" href="#" id="logoutLink">🚪 로그아웃</a>
+                </li>
+                <li class="nav-item d-none" id="userWelcome">
+                    <a class="nav-link disabled">👋 안녕하세요, <span id="currentUser"></span>님!</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

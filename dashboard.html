@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대시보드</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="container mt-5">
+    <h2>대시보드</h2>
+    <p>환영합니다, <span id="usernameDisplay"></span>님!</p>
+    <a href="#" id="logoutLink" class="btn btn-danger">로그아웃</a>
+</main>
+<script src="script.js"></script>
+<script>
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
+</html>

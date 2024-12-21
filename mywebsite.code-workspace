@@ -8,6 +8,7 @@
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "mywebsite"
+		"liveServer.settings.multiRootWorkspaceName": "mywebsite",
+		"liveServer.settings.port": 5501
 	}
 }
