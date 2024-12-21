@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설립목적</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <script src="../script.js" defer></script>
+    <script src="../bootstrap.bundle.js" defer></script>
+</head>
+<body>
+<!-- Header -->
+<div id="header"></div>
+
+<!-- 메인 콘텐츠 -->
+<main class="container">
+    <h1>설립목적</h1>
+    <p>여기에 설립목적에 대한 설명을 입력합니다.</p>
+    <img src="../img/purpose_image.jpg" alt="설립목적 이미지">
+</main>
+
+<!-- Footer -->
+<div id="footer"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('../header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        fetch('../footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    });
+</script>
+</body>
+</html>
