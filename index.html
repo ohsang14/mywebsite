@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈페이지</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/bootstrap.min.css">
-    <script src="/script.js" defer></script>
-    <script src="/bootstrap.bundle.js" defer></script>
-    
+    <!-- CSS 파일 로드 -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <!-- JavaScript 파일 로드 -->
+    <script src="./bootstrap.bundle.js" defer></script>
+    <script src="./script.js" defer></script>
 </head>
 <body>
 
@@ -21,71 +22,66 @@
 <!-- Footer 포함 -->
 <div id="footer"></div>
 
-<script src="bootstrap.bundle.js"></script>
-<script src="script.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // 헤더 불러오기
-        fetch('header.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Header 파일을 불러오는데 실패했습니다.');
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('header').innerHTML = data;
+        /**
+         * 📌 공통 컴포넌트 로드 함수
+         */
+        const loadComponent = (id, path) => {
+            fetch(path)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`${path} 파일을 불러오는데 실패했습니다.`);
+                    }
+                    return response.text();
+                })
+                .then(data => document.getElementById(id).innerHTML = data)
+                .catch(error => console.error(`${path} Error:`, error));
+        };
 
-                // 헤더 로드 후 로그인 상태 확인
-                const loginItem = document.getElementById('loginItem');
-                const signupItem = document.getElementById('signupItem');
-                const logoutItem = document.getElementById('logoutItem');
-                const userWelcome = document.getElementById('userWelcome');
-                const currentUser = document.getElementById('currentUser');
-                const logoutLink = document.getElementById('logoutLink');
+        // 📌 Header, Body Content, Footer 불러오기
+        loadComponent('header', './header.html');
+        loadComponent('mainContent', './body-content.html');
+        loadComponent('footer', './footer.html');
 
-                if (localStorage.getItem('isLoggedIn') === 'true') {
-                    loginItem.classList.add('d-none');
-                    signupItem.classList.add('d-none');
-                    logoutItem.classList.remove('d-none');
-                    userWelcome.classList.remove('d-none');
-                    currentUser.textContent = localStorage.getItem('currentUser') || '사용자';
-                } else {
-                    loginItem.classList.remove('d-none');
-                    signupItem.classList.remove('d-none');
-                    logoutItem.classList.add('d-none');
-                    userWelcome.classList.add('d-none');
-                }
+        /**
+         * 📌 로그인 상태 확인 및 UI 업데이트
+         */
+        function updateAuthUI() {
+            const loginItem = document.getElementById('loginItem');
+            const signupItem = document.getElementById('signupItem');
+            const logoutItem = document.getElementById('logoutItem');
+            const userWelcome = document.getElementById('userWelcome');
+            const currentUser = document.getElementById('currentUser');
+            const logoutLink = document.getElementById('logoutLink');
 
-                logoutLink?.addEventListener('click', () => {
-                    localStorage.removeItem('isLoggedIn');
-                    localStorage.removeItem('currentUser');
-                    window.location.href = 'index.html';
-                });
-            })
-            .catch(error => console.error('Header Error:', error));
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const currentUserName = localStorage.getItem('currentUser');
 
-        // Body Content 불러오기
-        fetch('body-content.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Body Content 파일을 불러오는데 실패했습니다.');
-                }
-                return response.text();
-            })
-            .then(data => document.getElementById('mainContent').innerHTML = data)
-            .catch(error => console.error('Body Content Error:', error));
+            if (isLoggedIn && currentUserName) {
+                loginItem?.classList.add('d-none');
+                signupItem?.classList.add('d-none');
+                logoutItem?.classList.remove('d-none');
+                userWelcome?.classList.remove('d-none');
+                currentUser.textContent = currentUserName;
+            } else {
+                loginItem?.classList.remove('d-none');
+                signupItem?.classList.remove('d-none');
+                logoutItem?.classList.add('d-none');
+                userWelcome?.classList.add('d-none');
+            }
 
-        // Footer 불러오기
-        fetch('footer.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Footer 파일을 불러오는데 실패했습니다.');
-                }
-                return response.text();
-            })
-            .then(data => document.getElementById('footer').innerHTML = data)
-            .catch(error => console.error('Footer Error:', error));
+            // 로그아웃 이벤트 리스너
+            logoutLink?.addEventListener('click', () => {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('currentUser');
+                alert('✅ 로그아웃 되었습니다.');
+                window.location.href = 'index.html';
+            });
+        }
+
+        // 로그인 상태 UI 업데이트 (헤더 로드 후 실행)
+        setTimeout(updateAuthUI, 500);
     });
 </script>
 </body>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정관 게시판</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+    <style>
+        /* 공통 배너 스타일 */
+        .page-banner {
+            background: url('../img/container01.png') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-banner h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        /* 콘텐츠 레이아웃 */
+        .content-container {
+            display: flex;
+            gap: 30px;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        .sidebar {
+            flex: 1;
+            background: #f9fafc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .sidebar a.active,
+        .sidebar a:hover {
+            background: #2a8f5b;
+            color: #fff;
+        }
+
+        .main-content {
+            flex: 3;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        /* 게시판 스타일 */
+        .board-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .board-table th,
+        .board-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .board-table th {
+            background-color: #f9fafc;
+        }
+
+        .write-btn {
+            margin: 20px 0;
+            text-align: right;
+        }
+
+        .board-table .post-title {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .board-table .post-title:hover {
+            text-decoration: none;
+        }
+
+        /* 모달 스타일 */
+        .modal-content {
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<!-- 공통 헤더 -->
+<div id="header"></div>
+
+<!-- 페이지 배너 -->
+<div class="page-banner">
+    <h1>정관 게시판</h1>
+</div>
+
+<!-- 메인 콘텐츠 -->
+<main class="content-container">
+    <aside class="sidebar">
+        <ul>
+            <li><a href="purpose.html">설립목적</a></li>
+            <li><a href="greeting.html">인사말</a></li>
+            <li><a href="history.html">연혁</a></li>
+            <li><a href="rules.html" class="active">정관</a></li>
+            <li><a href="organization.html">조직도</a></li>
+            <li><a href="location.html">찾아오는길</a></li>
+        </ul>
+    </aside>
+
+    <section class="main-content">
+        <h2>정관 게시판</h2>
+        <div class="write-btn">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#writeModal">글쓰기</button>
+        </div>
+        <table class="board-table">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+            </tr>
+            </thead>
+            <tbody id="boardBody"></tbody>
+        </table>
+    </section>
+</main>
+
+<!-- 글쓰기 모달 -->
+<div class="modal fade" id="writeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">📝 글쓰기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="postTitle" placeholder="제목" class="form-control mb-3">
+                <textarea id="postContent" placeholder="내용" rows="5" class="form-control"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" id="savePost">등록</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 상세 보기 모달 -->
+<div class="modal fade" id="viewModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">📄 게시글 보기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h4 id="viewTitle"></h4>
+                <p><strong>작성자:</strong> <span id="viewAuthor"></span></p>
+                <p><strong>작성일:</strong> <span id="viewDate"></span></p>
+                <p id="viewContent"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const boardKey = 'boardPosts';
+
+    function loadPosts() {
+        const posts = JSON.parse(localStorage.getItem(boardKey)) || [];
+        const boardBody = document.getElementById('boardBody');
+        boardBody.innerHTML = posts.map((post, index) => `
+            <tr>
+                <td>${index + 1}</td>
+                <td class="post-title" onclick="showPost('${post.title}', '${post.username}', '${post.date}', '${post.content}')">${post.title}</td>
+                <td>${post.username}</td>
+                <td>${post.date}</td>
+                <td>${post.views}</td>
+            </tr>`).join('');
+    }
+
+    function showPost(title, author, date, content) {
+        document.getElementById('viewTitle').innerText = title;
+        document.getElementById('viewAuthor').innerText = author;
+        document.getElementById('viewDate').innerText = date;
+        document.getElementById('viewContent').innerText = content;
+        new bootstrap.Modal(document.getElementById('viewModal')).show();
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPosts);
+</script>
+</body>
+</html>

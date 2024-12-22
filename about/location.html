@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인사말</title>
-    <!-- CSS 경로 -->
+    <title>찾아오는길</title>
+    <!-- CSS & JS -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../bootstrap.min.css">
-    <!-- JS 경로 -->
     <script src="../script.js" defer></script>
-    <script src="../bootstrap.bundle.js" defer></script>
+    <script src="../bootstrap.bundle.min.js" defer></script>
     <style>
         /* 공통 배너 스타일 */
         .page-banner {
@@ -27,7 +26,7 @@
             font-weight: bold;
         }
 
-        /* 공통 콘텐츠 컨테이너 */
+        /* 콘텐츠 레이아웃 */
         .content-container {
             display: flex;
             gap: 30px;
@@ -35,7 +34,6 @@
             max-width: 1200px;
         }
 
-        /* 사이드바 공통 스타일 */
         .sidebar {
             flex: 1;
             background: #f9fafc;
@@ -69,46 +67,37 @@
             color: #fff;
         }
 
-        /* 메인 콘텐츠 공통 스타일 */
         .main-content {
             flex: 3;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            display: flex;
-            flex-direction: row;
-            gap: 30px;
-            align-items: center;
         }
 
-        .main-content img {
-            width: 40%;
-            max-width: 400px;
+        /* 지도 스타일 */
+        .map-container {
+            width: 100%;
+            height: 400px;
             border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .main-content .text-content {
-            flex: 1;
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
-        .main-content .text-content h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #2a8f5b;
-            padding-bottom: 10px;
-        }
-
-        .main-content .text-content p {
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .main-content .author {
-            font-weight: bold;
-            text-align: right;
+        .contact-info {
             margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 1rem;
         }
 
         /* 반응형 디자인 */
@@ -117,18 +106,12 @@
                 flex-direction: column;
             }
 
+            .sidebar {
+                order: 2;
+            }
+
             .main-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .main-content img {
-                width: 80%;
-                margin-bottom: 20px;
-            }
-
-            .main-content .text-content {
-                text-align: center;
+                order: 1;
             }
         }
     </style>
@@ -139,7 +122,7 @@
 
 <!-- 페이지 배너 -->
 <div class="page-banner">
-    <h1>인사말</h1>
+    <h1>찾아오는길</h1>
 </div>
 
 <!-- 메인 콘텐츠 -->
@@ -148,33 +131,34 @@
     <aside class="sidebar">
         <ul>
             <li><a href="purpose.html">설립목적</a></li>
-            <li><a href="greeting.html" class="active">인사말</a></li>
+            <li><a href="greeting.html">인사말</a></li>
             <li><a href="history.html">연혁</a></li>
             <li><a href="rules.html">정관</a></li>
             <li><a href="organization.html">조직도</a></li>
-            <li><a href="location.html">찾아오는길</a></li>
+            <li><a href="location.html" class="active">찾아오는길</a></li>
         </ul>
     </aside>
 
     <!-- 메인 콘텐츠 -->
     <section class="main-content">
-        <img src="../img/greeting.png" alt="인사말 이미지">
-        <div class="text-content">
-            <h2>인사말</h2>
-            <p>
-                아직도 우리 주변에는 어려움과 힘들게 살아가는 사람들이 많이 있습니다.
-                장애인 관련 정책은 있지만, 아쉬운 부분이 많고 현실에서는 여전히 지원이 부족합니다.
-            </p>
-            <p>
-                정신적, 물리적 지원이 더 필요하며, 우리는 함께 더 나은 세상을 만들어가야 합니다.
-            </p>
-            <p>
-                <strong>"변화하지 않는 사람은 퇴보한다"</strong>라는 말처럼, 우리는 끊임없이 발전해야 합니다.
-            </p>
-            <p>
-                한마음사회적협동조합은 여러분과 함께 희망을 만들어가겠습니다.
-            </p>
-            <p class="author">한마음사회적협동조합 이사장 최동표</p>
+        <h2>찾아오는길</h2>
+        <div class="map-container">
+            <iframe
+                    src="https://map.anybuild.com/sys_load/kakao_map_xy_load.php?center_x=&amp;center_y=&amp;map_h=400&amp;addr=서울특별시 서대문구 홍연8길 3 (연희동) 2층,&amp;title=한마음사회적협동조합&amp;info=&amp;zoom=10"
+                    width="100%"
+                    height="400"
+                    frameborder="0"
+                    scrolling="no"
+                    id="map_iframe_4331"
+                    name="map_iframe_4331">
+            </iframe>
+        </div>
+
+        <div class="contact-info">
+            <p><strong>주소:</strong> 서울 서대문구 홍연8길 3 (연희동) 2층</p>
+            <p><strong>전화:</strong> 010-8320-2506</p>
+            <p><strong>팩스:</strong> 02-394-2506</p>
+            <p><strong>이메일:</strong> hanmaumsc@hanmail.net</p>
         </div>
     </section>
 </main>
@@ -182,16 +166,17 @@
 <!-- 공통 푸터 -->
 <div id="footer"></div>
 
-<!-- JavaScript로 Header와 Footer 로드 -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         fetch('../header.html')
             .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data);
+            .then(data => document.getElementById('header').innerHTML = data)
+            .catch(error => console.error('Error fetching header:', error));
 
         fetch('../footer.html')
             .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
+            .then(data => document.getElementById('footer').innerHTML = data)
+            .catch(error => console.error('Error fetching footer:', error));
     });
 </script>
 </body>
