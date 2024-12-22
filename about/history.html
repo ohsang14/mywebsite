@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>연혁</title>
-    <!-- CSS 경로 -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../bootstrap.min.css">
-    <!-- JS 경로 -->
     <script src="../script.js" defer></script>
     <script src="../bootstrap.bundle.js" defer></script>
     <style>
-        /* 공통 배너 스타일 */
         .page-banner {
             background: url('../img/container01.png') no-repeat center center/cover;
             height: 300px;
@@ -27,7 +24,6 @@
             font-weight: bold;
         }
 
-        /* 공통 콘텐츠 컨테이너 */
         .content-container {
             display: flex;
             gap: 30px;
@@ -35,7 +31,6 @@
             max-width: 1200px;
         }
 
-        /* 사이드바 스타일 */
         .sidebar {
             flex: 1;
             background: #f9fafc;
@@ -69,7 +64,6 @@
             color: #fff;
         }
 
-        /* 메인 콘텐츠 스타일 */
         .main-content {
             flex: 3;
             background: #fff;
@@ -103,7 +97,6 @@
             text-align: center;
         }
 
-        /* 반응형 디자인 */
         @media (max-width: 768px) {
             .content-container {
                 flex-direction: column;
@@ -125,17 +118,11 @@
     </style>
 </head>
 <body>
-<!-- 공통 헤더 -->
 <div id="header"></div>
-
-<!-- 페이지 배너 -->
 <div class="page-banner">
     <h1>연혁</h1>
 </div>
-
-<!-- 메인 콘텐츠 -->
 <main class="content-container">
-    <!-- 사이드바 -->
     <aside class="sidebar">
         <ul>
             <li><a href="purpose.html">설립목적</a></li>
@@ -146,18 +133,12 @@
             <li><a href="location.html">찾아오는길</a></li>
         </ul>
     </aside>
-
-    <!-- 메인 콘텐츠 -->
     <section class="main-content">
         <h2>연혁</h2>
         <img src="../img/history.png" alt="연혁 이미지">
     </section>
 </main>
-
-<!-- 공통 푸터 -->
 <div id="footer"></div>
-
-<!-- JavaScript로 Header와 Footer 로드 -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         fetch('../header.html')

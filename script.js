@@ -1,13 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    /**
-     * ✅ 경로 설정
-     */
+
     const currentPath = window.location.pathname;
     const basePath = currentPath.includes('/about/') ? '../' : './';
 
-    /**
-     * ✅ 로그인 상태 UI 업데이트
-     */
+
     function updateAuthUI() {
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         const currentUser = localStorage.getItem('currentUser');
@@ -37,9 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /**
-     * ✅ 로그아웃 이벤트 리스너
-     */
+
     function setupLogoutListener() {
         const logoutLink = document.getElementById('logoutLink');
         if (logoutLink) {
@@ -55,9 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /**
-     * ✅ 로그인 처리
-     */
+
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
@@ -76,9 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /**
-     * ✅ 회원가입 처리
-     */
+
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
         signupForm.addEventListener('submit', (e) => {
@@ -96,9 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /**
-     * ✅ 드롭다운 메뉴 이벤트
-     */
+
     document.querySelectorAll('.navbar-nav .nav-item').forEach(item => {
         const dropdown = item.querySelector('.dep2');
         if (dropdown) {
@@ -107,9 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    /**
-     * ✅ 헤더 및 푸터 동적 로드
-     */
+
     function loadFragment(selector, url, callback) {
         fetch(url)
             .then(response => {
@@ -125,9 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    /**
-     * ✅ 헤더 및 푸터 로드 후 이벤트 리스너 설정
-     */
+
     if (document.getElementById('header')) {
         loadFragment('header', `${basePath}header.html`, () => {
             updateAuthUI(); // ✅ 헤더 로드 후 로그인 상태 업데이트
@@ -142,3 +126,34 @@ document.addEventListener('DOMContentLoaded', () => {
         loadFragment('footer', `${basePath}footer.html`);
     }
 });
+
+const faqSavePostButton = document.getElementById('faqSavePost');
+
+if (faqSavePostButton) {
+    faqSavePostButton.addEventListener('click', () => {
+        const title = document.getElementById('faqPostTitle').value.trim();
+        const content = document.getElementById('faqPostContent').value.trim();
+        const author = localStorage.getItem('currentUser') || '익명';
+        const date = new Date().toLocaleDateString();
+        const views = 0;
+
+        if (!title || !content) {
+            alert('❌ 제목과 내용을 모두 입력해주세요.');
+            return;
+        }
+
+        const newPost = { title, content, author, date, views };
+        const faqPosts = JSON.parse(localStorage.getItem('faqPosts')) || [];
+        faqPosts.push(newPost);
+        localStorage.setItem('faqPosts', JSON.stringify(faqPosts));
+
+        alert('✅ 글이 성공적으로 등록되었습니다.');
+        document.getElementById('faqPostTitle').value = '';
+        document.getElementById('faqPostContent').value = '';
+        const writeModal = bootstrap.Modal.getInstance(document.getElementById('writeModal'));
+        writeModal.hide();
+        renderFaqPosts();
+    });
+} else {
+    console.warn('⚠️ 글쓰기 버튼(#faqSavePost)을 찾을 수 없습니다.');
+}

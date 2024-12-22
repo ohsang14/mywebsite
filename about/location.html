@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>찾아오는길</title>
-    <!-- CSS & JS -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../bootstrap.min.css">
     <script src="../script.js" defer></script>
     <script src="../bootstrap.bundle.min.js" defer></script>
     <style>
-        /* 공통 배너 스타일 */
         .page-banner {
             background: url('../img/container01.png') no-repeat center center/cover;
             height: 300px;
@@ -26,7 +24,6 @@
             font-weight: bold;
         }
 
-        /* 콘텐츠 레이아웃 */
         .content-container {
             display: flex;
             gap: 30px;
@@ -75,7 +72,6 @@
             padding: 30px;
         }
 
-        /* 지도 스타일 */
         .map-container {
             width: 100%;
             height: 400px;
@@ -100,7 +96,6 @@
             font-size: 1rem;
         }
 
-        /* 반응형 디자인 */
         @media (max-width: 768px) {
             .content-container {
                 flex-direction: column;
@@ -117,17 +112,14 @@
     </style>
 </head>
 <body>
-<!-- 공통 헤더 -->
 <div id="header"></div>
-
-<!-- 페이지 배너 -->
 <div class="page-banner">
     <h1>찾아오는길</h1>
 </div>
 
-<!-- 메인 콘텐츠 -->
+
 <main class="content-container">
-    <!-- 사이드바 -->
+
     <aside class="sidebar">
         <ul>
             <li><a href="purpose.html">설립목적</a></li>
@@ -139,7 +131,7 @@
         </ul>
     </aside>
 
-    <!-- 메인 콘텐츠 -->
+
     <section class="main-content">
         <h2>찾아오는길</h2>
         <div class="map-container">
@@ -163,7 +155,7 @@
     </section>
 </main>
 
-<!-- 공통 푸터 -->
+
 <div id="footer"></div>
 
 <script>

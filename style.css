@@ -81,10 +81,10 @@ header {
 }
 
 .navbar-nav .nav-item:hover {
-    background-color: #f8f9fa; /* 호버 시 배경색 변경 */
+    background-color: #f8f9fa;
 }
 
-/* 섹션 타이틀 */
+
 .section-title {
     text-align: center;
     font-size: 2rem;
@@ -93,7 +93,7 @@ header {
     color: #333;
 }
 
-/* 카드 디자인 */
+
 .custom-card {
     border: none;
     border-radius: 15px;
@@ -104,7 +104,7 @@ header {
 }
 
 .custom-card:hover {
-    transform: translateY(-10px); /* 카드가 살짝 위로 이동 */
+    transform: translateY(-10px);
 }
 
 .custom-card img, iframe {

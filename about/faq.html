@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>질문게시판</title>
-    <!-- CSS & JS -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../bootstrap.min.css">
     <script src="../script.js" defer></script>
     <script src="../bootstrap.bundle.min.js" defer></script>
     <style>
-        /* 공통 배너 스타일 */
         .page-banner {
             background: url('../img/container01.png') no-repeat center center/cover;
             height: 300px;
@@ -26,7 +24,6 @@
             font-weight: bold;
         }
 
-        /* 콘텐츠 레이아웃 */
         .content-container {
             display: flex;
             gap: 30px;
@@ -77,7 +74,6 @@
             margin-bottom: 20px;
         }
 
-        /* 게시판 스타일 */
         .board-table {
             width: 100%;
             border-collapse: collapse;
@@ -110,37 +106,27 @@
             border: none;
         }
 
-        /* 모달 스타일 */
         .modal-content {
             border-radius: 10px;
         }
 
-        /* 상세보기 스타일 */
         .modal-body p {
             margin: 10px 0;
         }
     </style>
 </head>
 <body>
-<!-- 공통 헤더 -->
 <div id="header"></div>
-
-<!-- 페이지 배너 -->
 <div class="page-banner">
     <h1>질문게시판</h1>
 </div>
-
-<!-- 메인 콘텐츠 -->
 <main class="content-container">
-    <!-- 사이드바 -->
     <aside class="sidebar">
         <ul>
             <li><a href="notice.html">공지사항</a></li>
             <li><a href="faq.html" class="active">질문게시판</a></li>
         </ul>
     </aside>
-
-    <!-- 메인 콘텐츠 -->
     <section class="main-content">
         <h2>질문게시판</h2>
         <div class="write-btn">
@@ -160,8 +146,6 @@
         </table>
     </section>
 </main>
-
-<!-- 글쓰기 모달 -->
 <div class="modal fade" id="writeModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -179,8 +163,6 @@
         </div>
     </div>
 </div>
-
-<!-- 글 상세보기 모달 -->
 <div class="modal fade" id="faqViewModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -198,14 +180,10 @@
         </div>
     </div>
 </div>
-
-<!-- 공통 푸터 -->
 <div id="footer"></div>
-
 <script>
     let faqPosts = JSON.parse(localStorage.getItem('faqPosts')) || [];
     const boardBody = document.getElementById('faqBoardBody');
-
     function renderFaqPosts() {
         boardBody.innerHTML = faqPosts.map((post, index) => `
             <tr>
@@ -217,7 +195,6 @@
             </tr>
         `).join('');
     }
-
     window.showFaqPost = (index) => {
         const post = faqPosts[index];
         post.views++;
@@ -229,7 +206,6 @@
         renderFaqPosts();
         new bootstrap.Modal(document.getElementById('faqViewModal')).show();
     };
-
     renderFaqPosts();
 </script>
 </body>

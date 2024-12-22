@@ -4,29 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈페이지</title>
-    <!-- CSS 파일 로드 -->
+
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./bootstrap.min.css">
-    <!-- JavaScript 파일 로드 -->
+
     <script src="./bootstrap.bundle.js" defer></script>
     <script src="./script.js" defer></script>
 </head>
 <body>
 
-<!-- Header 포함 -->
 <div id="header"></div>
 
-<!-- Body Content 포함 -->
 <div id="mainContent"></div>
 
-<!-- Footer 포함 -->
 <div id="footer"></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        /**
-         * 📌 공통 컴포넌트 로드 함수
-         */
+
         const loadComponent = (id, path) => {
             fetch(path)
                 .then(response => {
@@ -39,14 +34,10 @@
                 .catch(error => console.error(`${path} Error:`, error));
         };
 
-        // 📌 Header, Body Content, Footer 불러오기
         loadComponent('header', './header.html');
         loadComponent('mainContent', './body-content.html');
         loadComponent('footer', './footer.html');
 
-        /**
-         * 📌 로그인 상태 확인 및 UI 업데이트
-         */
         function updateAuthUI() {
             const loginItem = document.getElementById('loginItem');
             const signupItem = document.getElementById('signupItem');
@@ -71,7 +62,6 @@
                 userWelcome?.classList.add('d-none');
             }
 
-            // 로그아웃 이벤트 리스너
             logoutLink?.addEventListener('click', () => {
                 localStorage.removeItem('isLoggedIn');
                 localStorage.removeItem('currentUser');
@@ -80,7 +70,6 @@
             });
         }
 
-        // 로그인 상태 UI 업데이트 (헤더 로드 후 실행)
         setTimeout(updateAuthUI, 500);
     });
 </script>
