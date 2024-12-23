@@ -123,6 +123,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
+     * ✅ 게시판 키 설정 (페이지별)
+     */
+    let boardKey = 'boardPosts';
+    if (window.location.pathname.includes('rules.html')) {
+        boardKey = 'boardPosts_rules';
+    } else if (window.location.pathname.includes('notice.html')) {
+        boardKey = 'boardPosts_notice';
+    }
+
+    /**
      * ✅ 게시글 저장 기능
      */
     const savePostButton = document.getElementById('savePost');
@@ -132,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const content = document.getElementById('postContent').value.trim();
             const username = localStorage.getItem('currentUser') || '익명';
             const date = new Date().toLocaleDateString();
-            const posts = JSON.parse(localStorage.getItem('boardPosts')) || [];
+            const posts = JSON.parse(localStorage.getItem(boardKey)) || [];
 
             if (!title || !content) {
                 alert('❌ 제목과 내용을 입력해주세요.');
@@ -148,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             posts.push(newPost);
-            localStorage.setItem('boardPosts', JSON.stringify(posts));
+            localStorage.setItem(boardKey, JSON.stringify(posts));
 
             alert('✅ 게시글이 등록되었습니다.');
             window.location.reload();
@@ -161,13 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function initializeCarousel() {
         const carouselElement = document.querySelector('#carouselExample');
         if (carouselElement) {
-            const carousel = new bootstrap.Carousel(carouselElement, {
+            new bootstrap.Carousel(carouselElement, {
                 interval: 2000,
                 ride: 'carousel'
             });
-            console.log('✅ 캐러셀이 초기화되었습니다.');
-        } else {
-            console.warn('⚠️ 캐러셀 요소를 찾을 수 없습니다.');
         }
     }
 
@@ -176,10 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function loadFragment(selector, url, callback) {
         fetch(url)
-            .then(response => {
-                if (!response.ok) throw new Error(`${url} 파일을 불러오지 못했습니다.`);
-                return response.text();
-            })
+            .then(response => response.text())
             .then(data => {
                 document.getElementById(selector).innerHTML = data;
                 if (callback) callback();
@@ -190,18 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * ✅ 모든 요소 로드 후 실행
+     * ✅ 초기화 실행
      */
     if (document.getElementById('header')) {
         loadFragment('header', `${basePath}header.html`, () => {
             updateAuthUI();
             setupLogoutListener();
-            initializeCarousel(); // 헤더가 로드된 후 캐러셀 초기화
+            initializeCarousel();
         });
-    } else {
-        updateAuthUI();
-        setupLogoutListener();
-        initializeCarousel();
     }
 
     if (document.getElementById('footer')) {
