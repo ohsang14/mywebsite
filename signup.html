@@ -53,7 +53,6 @@
 </head>
 <body>
 
-
 <div id="header"></div>
 
 <main class="signup-container">
@@ -65,18 +64,15 @@
             <input type="text" id="signupUsername" class="form-control" placeholder="아이디를 입력하세요" required>
         </div>
 
-
         <div class="mb-3">
             <label for="signupPassword" class="form-label">비밀번호</label>
             <input type="password" id="signupPassword" class="form-control" placeholder="비밀번호를 입력하세요" required>
         </div>
 
-
         <div class="mb-3">
             <label for="signupPasswordConfirm" class="form-label">비밀번호 확인</label>
             <input type="password" id="signupPasswordConfirm" class="form-control" placeholder="비밀번호를 다시 입력하세요" required>
         </div>
-
 
         <div class="mb-3">
             <label class="form-label">이용약관</label>
@@ -93,54 +89,13 @@
             </div>
         </div>
 
-
         <button type="submit" class="btn btn-primary w-100">회원가입</button>
     </form>
 </main>
 
-
 <div id="footer"></div>
 
-<script src="bootstrap.bundle.js"></script>
+<script src="bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data);
-
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
-
-
-        const signupForm = document.getElementById('signupForm');
-        signupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('signupUsername').value;
-            const password = document.getElementById('signupPassword').value;
-            const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
-            const termsAgree = document.getElementById('termsAgree').checked;
-
-            if (password !== passwordConfirm) {
-                alert('❌ 비밀번호가 일치하지 않습니다.');
-                return;
-            }
-
-            if (!termsAgree) {
-                alert('❌ 약관에 동의해야 회원가입이 가능합니다.');
-                return;
-            }
-
-            if (localStorage.getItem(username)) {
-                alert('❌ 이미 존재하는 아이디입니다.');
-            } else {
-                localStorage.setItem(username, password);
-                alert('✅ 회원가입 성공!');
-                window.location.href = 'login.html';
-            }
-        });
-    });
-</script>
 </body>
 </html>
